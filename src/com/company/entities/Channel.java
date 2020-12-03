@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Channel {
     private String name;
-    private Server server;
+    private final Server server;
     private ArrayList<Profile> profiles;
 
     public Channel(String name, Server server) {
@@ -14,19 +14,7 @@ public class Channel {
         profiles = new ArrayList<>();
     }
 
-    public void joinedChannel(Profile profile){
-        System.out.println(profile.getNickname() + " joined the channel " + name);
-        profiles.add(profile);
-    }
 
-    public void leftChannel(Profile profile){
-        System.out.println(profile.getNickname() + " left " + name);
-        profiles.remove(profile);
-    }
-
-    public void displayMessage(String s, Profile profile) {
-        System.out.println(profile.getNickname() + " said " + s + " in " + name);
-    }
 
     public String getName() {
         return name;
@@ -40,6 +28,10 @@ public class Channel {
         return profiles;
     }
 
+    public void addProfile(Profile profile) {
+        profiles.add(profile);
+    }
+
     public Server getServer() {
         return server;
     }
@@ -51,5 +43,9 @@ public class Channel {
                 ", server=" + server.getName() +
                 ", profiles=" + profiles.stream().map(Profile::getUsername).collect(Collectors.joining(", ")) +
                 '}';
+    }
+
+    protected void popProfile(Profile profile) {
+        profiles.remove(profile);
     }
 }

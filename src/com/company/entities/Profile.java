@@ -21,7 +21,7 @@ public class Profile {
         server.joinedProfile(this);
     }
 
-    public void joinChannel(Channel channel){
+    public void joinChannel(VoiceChannel channel){
         if(!channel.getServer().getProfiles().contains(this)){
             throw new IllegalArgumentException("User is not in the server yet!");
         }
@@ -31,7 +31,7 @@ public class Profile {
         channel.joinedChannel(this);
     }
 
-    public void leaveChannel(Channel channel){
+    public void leaveChannel(VoiceChannel channel){
         if(!channel.getProfiles().remove(this)){
             throw new IllegalArgumentException("This profile is not in the channel!");
         }
@@ -45,7 +45,7 @@ public class Profile {
         server.leftServer(this);
     }
 
-    public void sendMessage(Channel channel, String s){
+    public void sendMessage(TextChannel channel, String s){
         channel.displayMessage(s, this);
     }
 

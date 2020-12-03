@@ -24,9 +24,7 @@
 
 package com.company;
 
-import com.company.entities.Channel;
-import com.company.entities.Profile;
-import com.company.entities.Server;
+import com.company.entities.*;
 
 public class Main {
 
@@ -37,13 +35,15 @@ public class Main {
         Server s2 = new Server("School");
         p1.joinServer(s1);
         p1.joinServer(s2);
-        Channel c1 = new Channel("Chill Talk", s1);
-        Channel c2 = new Channel("Homework", s2);
-        p1.joinChannel(c1);
-        p1.joinChannel(c2);
+        TextChannel tc1 = new TextChannel("Chill Talk", s1);
+        TextChannel t1 = new TextChannel("Spam-Test", s1);
+        VoiceChannel vc1 = new VoiceChannel("Homework", s2);
+        VoiceChannel vc2 = new VoiceChannel("Classes", s2);
+        p1.joinChannel(vc1);
+        p1.joinChannel(vc2);
         System.out.println(p1.toString());
-        p1.sendMessage(c1, "Sup, G!");
-        p1.leaveChannel(c1);
+        p1.sendMessage(tc1, "Sup, G!");
+        p1.leaveChannel(vc1);
         p1.leaveServer(s1);
     }
 }
